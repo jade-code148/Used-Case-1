@@ -23,6 +23,3 @@ def divide(a: int, b: int) -> float:
     Divides the first integer by the second and returns the result.
     Raises ValueError if the second integer is zero.
     """
-    if b == 0:
-        raise ValueError("Cannot divide by zero.")
-    return a / b
