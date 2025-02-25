@@ -23,17 +23,15 @@ jobs:
           key: sonar-scanner-cli-7.0.2.4839-linux-x64
 
       - name: Set up SonarQube scanner
-        if: steps.cache-sonar.outputs.cache-hit != 'true'
         run: |
           wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-7.0.2.4839-linux-x64.zip -O sonar-scanner.zip
-          
           unzip sonar-scanner.zip -d /home/runner/work/_temp/
           ls /home/runner/work/_temp/sonar-scanner-7.0.2.4839-linux-x64/bin
 
       - name: Run SonarQube analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_HOST_URL: "https://e5a6-125-19-120-130.ngrok-free.app"
         run: |
           /home/runner/work/_temp/sonar-scanner-7.0.2.4839-linux-x64/bin/sonar-scanner \
             -Dsonar.host.url=${SONAR_HOST_URL} \
