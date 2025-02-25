@@ -22,12 +22,11 @@ jobs:
           path: /home/runner/work/_temp/sonar-scanner-4.6.2.2472-linux
           key: sonar-scanner-cli-4.6.2.2472-linux
 
-      - name: Download and Extract SonarScanner (if not cached)
-        if: steps.cache-sonar.outputs.cache-hit != 'true'
-        run: 
-        wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip -O sonar-scanner.zip
-        unzip sonar-scanner.zip -d /home/runner/work/_temp/
-        ls /home/runner/work/_temp/sonar-scanner-4.6.2.2472-linux/bin
+      - name: Set up SonarQube scanner
+        run: |
+          wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-7.0.2.4839-linux.zip -O sonar-scanner.zip
+          unzip sonar-scanner.zip -d /home/runner/work/_temp/
+          ls /home/runner/work/_temp/sonar-scanner-cli-7.0.2.4839-windows-x64/sonar-scanner-7.0.2.4839-linux\bin
       - name: Run SonarQube analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
